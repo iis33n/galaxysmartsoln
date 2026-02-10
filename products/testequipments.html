@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Test Equipment – Galaxy Smart Solutions</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <link rel="stylesheet" href="css/style.css" />
+  <style>
+    .product-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 24px;
+      padding: 30px;
+    }
+    .product-card {
+      background: #fff;
+      border: 1px solid #ddd;
+      border-radius: 10px;
+      text-align: center;
+      padding: 20px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    }
+    .product-card img {
+      height: 150px;
+      object-fit: contain;
+      margin-bottom: 10px;
+      width: 100%;
+    }
+    .product-card h3 {
+      color: #005bbb;
+      margin: 10px 0 5px;
+    }
+    .enquire-btn {
+      display: inline-block;
+      margin-top: 10px;
+      background: #005bbb;
+      color: white;
+      padding: 8px 16px;
+      text-decoration: none;
+      border-radius: 6px;
+    }
+  </style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="brand">
+    <img src="images/galaxy smart sol logo.png" alt="Galaxy Smart Solutions" class="logo" />
+    <span>Galaxy Smart Solutions</span>
+  </div>
+  <nav class="top-nav">
+    <a href="index.html">Home</a>
+    <a href="products.html">Products</a>
+    <a href="electricals.html">Electricals</a>
+    <a href="test-equipment.html">Test Equipment</a>
+    <a href="enquire.html">Enquire</a>
+    <a href="contact.html">Contact</a>
+  </nav>
+</header>
+
+<section class="hero">
+  <h1>Test Equipment</h1>
+  <p>Explore our reliable test and measurement equipment for all technical needs.</p>
+</section>
+
+<main class="container">
+  <div class="product-grid">
+<div class="product-grid">
+
+  <div class="product-card">
+    <img src="test-equipment/images/fluke-ir.png" alt="FLUKE Infrared Temp Meter">
+    <h3>FLUKE Infrared Temp Meter</h3>
+    <p>High-accuracy contactless temperature measurement tool.</p>
+    <a href="#" class="enquire-btn" data-name="FLUKE Infrared Temp Meter">Enquire</a>
+  </div>
+
+  <div class="product-card">
+    <img src="test-equipment/images/fluke-clamp.png" alt="FLUKE Clamp Meter">
+    <h3>FLUKE Clamp Meter</h3>
+    <p>Professional AC/DC clamp meter for electrical diagnostics.</p>
+    <a href="#" class="enquire-btn" data-name="FLUKE Clamp Meter">Enquire</a>
+  </div>
+
+  <div class="product-card">
+    <img src="test-equipment/images/hioki-clamp.png" alt="HIOKI Clamp Meter">
+    <h3>HIOKI Clamp Meter</h3>
+    <p>Reliable current clamp meter with precise readings.</p>
+    <a href="#" class="enquire-btn" data-name="HIOKI Clamp Meter">Enquire</a>
+  </div>
+
+  <div class="product-card">
+    <img src="test-equipment/images/sanwa-analog.png" alt="SANWA Analog Multimeter">
+    <h3>SANWA Analog Multimeter</h3>
+    <p>Classic analog multimeter for accurate electrical measurements.</p>
+    <a href="#" class="enquire-btn" data-name="SANWA Analog Multimeter">Enquire</a>
+  </div>
+
+  <div class="product-card">
+    <img src="test-equipment/images/fluke-digital.png" alt="FLUKE Digital Multimeter">
+    <h3>FLUKE Digital Multimeter</h3>
+    <p>Digital multimeter for voltage, current, resistance, and continuity checks.</p>
+    <a href="#" class="enquire-btn" data-name="FLUKE Digital Multimeter">Enquire</a>
+  </div>
+
+  <div class="product-card">
+    <img src="test-equipment/images/fluke-leads.png" alt="FLUKE Test Leads">
+    <h3>FLUKE Test Leads</h3>
+    <p>High-quality leads for safe and precise test connections.</p
+
+
+    </main>
+
+<footer class="site-footer">
+  <p>&copy; 2025 Galaxy Smart Solutions. All rights reserved.</p>
+</footer>
+
+<!-- Optional WhatsApp button -->
+<a href="https://wa.me/971558249190" class="whatsapp-float" target="_blank" title="Chat with us on WhatsApp">
+  <img src="images/whatsapp-icon.svg" alt="WhatsApp" />
+</a>
+
+<script>
+  // Enquiry cart logic
+  document.querySelectorAll('.enquire-btn').forEach(button => {
+    button.addEventListener('click', function (e) {
+      e.preventDefault();
+      const productName = this.getAttribute('data-name');
+      let enquiries = JSON.parse(localStorage.getItem('enquiries')) || [];
+      enquiries.push(productName);
+      localStorage.setItem('enquiries', JSON.stringify(enquiries));
+      window.location.href = 'enquire.html';
+    });
+  });
+</script>
+
+</body>
+</html>
+
+
+

@@ -1,0 +1,86 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Relays & Sockets – Galaxy Smart Solutions</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+<header class="site-header">
+  <div class="brand">
+    <img src="images/galaxy smart sol logo.png" alt="Galaxy Smart Solutions" class="logo" />
+    <span>Galaxy Smart Solutions</span>
+  </div>
+  <nav class="top-nav">
+    <a href="index.html">Home</a>
+    <a href="products.html">Products</a>
+    <a href="cart.html">Enquire</a>
+    <a href="contact.html">Contact</a>
+  </nav>
+</header>
+
+<section class="hero">
+  <h1>Relays & Sockets</h1>
+  <p>Control and automation relays for industrial and electrical use.</p>
+</section>
+
+<main class="container">
+  <div class="product-grid">
+
+    <article class="product-card" data-name="DPDT 8PIN RELAY">
+      <img src="images/dpdt 8pin relay.png" alt="DPDT 8PIN RELAY">
+      <h3>DPDT 8PIN RELAY</h3>
+      <p>High-quality double pole double throw relay for control circuits.</p>
+      <button onclick="enquireProduct('DPDT 8PIN RELAY')">Enquire</button>
+    </article>
+
+    <article class="product-card" data-name="4PDT RELAY">
+      <img src="images/4pdt relay.png"4PDT RELAY">
+      <h3>4PDT RELAY</h3>
+      <p>Four-pole double-throw relay ideal for switching applications.</p>
+      <button onclick="enquireProduct('4PDT RELAY')">Enquire</button>
+    </article>
+
+    <article class="product-card" data-name="4PDT RELAY SOCKET DIN RAIL TYPE">
+      <img src="images/4pdt relay type.png" alt="4PDT RELAY SOCKET DIN RAIL TYPE">
+      <h3>4PDT RELAY SOCKET (DIN RAIL)</h3>
+      <p>DIN rail mountable socket for 4PDT relays.</p>
+      <button onclick="enquireProduct('4PDT RELAY SOCKET DIN RAIL TYPE')">Enquire</button>
+    </article>
+
+    <article class="product-card" data-name="DPDT 8PIN RELAY SOCKET">
+      <img src="images/dpdt 8pin relay socket.png" alt="DPDT 8PIN RELAY SOCKET">
+      <h3>DPDT 8PIN RELAY SOCKET</h3>
+      <p>Socket base for 8-pin DPDT relays, panel or DIN mount.</p>
+      <button onclick="enquireProduct('DPDT 8PIN RELAY SOCKET')">Enquire</button>
+    </article>
+
+    <article class="product-card" data-name="MINIATURE RELAY 5PIN">
+      <img src="images/Miniature .png" alt="MINIATURE RELAY 5PIN">
+      <h3>MINIATURE RELAY 5PIN</h3>
+      <p>Compact 5-pin miniature relay for compact control panels.</p>
+      <button onclick="enquireProduct('MINIATURE RELAY 5PIN')">Enquire</button>
+    </article>
+
+  </div>
+</main>
+
+<footer class="site-footer">
+  <p>&copy; 2025 Galaxy Smart Solutions. All rights reserved.</p>
+</footer>
+
+<script>
+  function enquireProduct(productName) {
+    const message = `Hello, I would like to enquire about: ${productName}`;
+    window.open(`https://wa.me/971558249190?text=${encodeURIComponent(message)}`, "_blank");
+  }
+</script>
+
+</body>
+</html>
+
+
+
