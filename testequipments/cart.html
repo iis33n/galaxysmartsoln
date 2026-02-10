@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Cart - Galaxy Smart Solutions</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="brand">
+      <img src="images/galaxy smart sol logo.png" alt="Galaxy Smart Solutions" class="logo" />
+      <span>Galaxy Smart Solutions</span>
+    </div>
+    <nav class="top-nav">
+      <a href="index.html">Home</a>
+      <a href="products.html">Products</a>
+      <a href="cart.html">Cart</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+  </header>
+
+  <main class="container">
+    <h2>Your Cart (Quote Request)</h2>
+    <div class="card">
+      <table class="table" id="cartTable">
+        <thead>
+          <tr>
+            <th>Product</th>
+            <th>Qty</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+      <p style="color:#bfbfbf;margin-top:8px;">No prices shown. Submit the form below to request a quote.</p>
+    </div>
+
+    <h3>Request a Quote</h3>
+    <form id="checkoutForm" class="card form-grid">
+      <input type="text" id="name" placeholder="Full Name" required />
+      <input type="email" id="email" placeholder="Email" required />
+      <textarea id="notes" rows="3" placeholder="Notes (e.g., delivery location, preferred brands)"></textarea>
+      <button type="submit" class="btn">Send Request</button>
+      <small class="muted">We will reply by email/WhatsApp with pricing.</small>
+    </form>
+  </main>
+
+  <footer class="site-footer">
+    <p>&copy; 2025 Galaxy Smart Solutions. All rights reserved.</p>
+  </footer>
+
+  <a href="https://wa.me/971558249190" class="whatsapp-float" target="_blank" title="Chat with us on WhatsApp">
+    <img src="images/whatsapp-icon.svg" alt="WhatsApp" />
+  </a>
+
+  <script src="cart-noprice.js">
+    
+  </script>
+</body>
+</html>
