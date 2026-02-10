@@ -1,0 +1,555 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Home | Your Company</title>
+  <style>
+    /* Mobile Menu Styles */
+.mobile-menu-wrapper {
+  display: none;
+}
+
+.hamburger {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 15px;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  z-index: 1100;
+  position: relative;
+}
+
+.hamburger .bar {
+  width: 25px;
+  height: 3px;
+  background: #0cd72b;
+  transition: all 0.3s ease;
+}
+
+.mobile-nav {
+  position: fixed;
+  top: 70px;
+  left: 0;
+  width: 100%;
+  background: #070707;
+  padding: 20px;
+  transform: translateY(-150%);
+  transition: transform 0.3s ease;
+  z-index: 1000;
+  border-top: 1px solid #0cd72b;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+}
+
+.mobile-nav a {
+  display: block;
+  color: white;
+  padding: 12px 0;
+  text-decoration: none;
+  border-bottom: 1px solid #333;
+  font-size: 16px;
+  transition: color 0.2s ease;
+}
+
+.mobile-nav a:hover {
+  color: #0cd72b;
+}
+
+.mobile-nav a.cart-link {
+  color: #0cd72b;
+  font-weight: bold;
+}
+
+/* Active States */
+.hamburger.active .bar:nth-child(1) {
+  transform: translateY(8px) rotate(45deg);
+}
+
+.hamburger.active .bar:nth-child(2) {
+  opacity: 0;
+}
+
+.hamburger.active .bar:nth-child(3) {
+  transform: translateY(-8px) rotate(-45deg);
+}
+
+.mobile-nav.active {
+  transform: translateY(0);
+}
+
+/* Mobile Only */
+@media (max-width: 768px) {
+  .mobile-menu-wrapper {
+    display: block;
+  }
+  
+  .category-nav {
+    display: none;
+  }
+}
+
+/* Ensure body doesn't scroll when menu is open */
+body.menu-open {
+  overflow: hidden;
+}
+    /* Reset */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      line-height: 1.6;
+      color: white;
+      position: relative;
+      background: transparent;
+      min-height: 100vh;
+      z-index: 0;
+    }
+
+    /* Background video */
+    #bg-video {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      object-fit: cover;
+      z-index: -2;
+      pointer-events: none;
+    }
+
+    /* Overlay for better text visibility */
+    #overlay {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100vw;
+      height: 100vh;
+      background-color: rgba(0,0,0,0.4);
+      z-index: -1;
+      pointer-events: none;
+    }
+
+    header {
+      background-color: rgba(0, 64, 128, 0.8);
+      color: white;
+      padding: 15px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+
+    .logo a img {
+      height: 40px;
+    }
+
+    nav {
+      position: relative;
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 20px;
+    }
+
+    nav ul li a {
+      color: white;
+      text-decoration: none;
+      font-weight: 600;
+      padding: 8px 12px;
+      border-radius: 4px;
+      transition: background-color 0.3s;
+    }
+
+    nav ul li a:hover,
+    nav ul li a:focus {
+      background-color: #003060;
+    }
+
+    /* Hamburger menu */
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      cursor: pointer;
+      width: 25px;
+      height: 20px;
+      justify-content: space-between;
+    }
+
+    .hamburger div {
+      height: 3px;
+      background-color: white;
+      border-radius: 2px;
+    }
+
+    @media (max-width: 768px) {
+      nav ul {
+        flex-direction: column;
+        background-color: rgba(0, 64, 128, 0.95);
+        position: absolute;
+        top: 100%;
+        right: 0;
+        width: 200px;
+        display: none;
+        border-radius: 0 0 8px 8px;
+      }
+      nav ul.show {
+        display: flex;
+      }
+      .hamburger {
+        display: flex;
+      }
+    }
+
+    main {
+      max-width: 1200px;
+      margin: 30px auto 60px;
+      padding: 0 20px;
+      position: relative;
+      z-index: 5;
+    }
+
+    .hero {
+      background-color: rgba(0, 115, 230, 0.6);
+      padding: 60px 20px;
+      text-align: center;
+      border-radius: 8px;
+      margin-bottom: 40px;
+    }
+
+    .hero h1 {
+      font-size: 3rem;
+      margin-bottom: 15px;
+    }
+
+    .hero p {
+      font-size: 1.2rem;
+      max-width: 700px;
+      margin: 0 auto;
+    }
+
+    section {
+      margin-bottom: 60px;
+    }
+
+    section h2 {
+      margin-bottom: 20px;
+      color: #aad4ff;
+      border-bottom: 3px solid #0073e6;
+      display: inline-block;
+      padding-bottom: 5px;
+    }
+
+    /* Product cards */
+    .products-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit,minmax(220px,1fr));
+      gap: 20px;
+    }
+
+    .product-card {
+      background-color: rgba(255, 255, 255, 0.1);
+      border-radius: 8px;
+      padding: 20px;
+      text-align: center;
+      transition: transform 0.3s ease;
+      box-shadow: 0 0 8px rgba(0,0,0,0.3);
+      backdrop-filter: blur(5px);
+      color: white;
+    }
+
+    .product-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 0 15px rgba(0,115,230,0.8);
+    }
+
+    .product-card img {
+      max-width: 100%;
+      height: 140px;
+      object-fit: contain;
+      margin-bottom: 15px;
+    }
+
+    .product-card h3 {
+      margin-bottom: 10px;
+      color: #aad4ff;
+    }
+
+    /* View More Button */
+    .btn-view-more {
+      display: inline-block;
+      background-color: #0073e6;
+      color: white;
+      padding: 12px 28px;
+      font-weight: 700;
+      border-radius: 6px;
+      text-decoration: none;
+      font-size: 1.1rem;
+      transition: background-color 0.3s ease;
+      cursor: pointer;
+      margin-top: 25px;
+    }
+
+    .btn-view-more:hover,
+    .btn-view-more:focus {
+      background-color: #005bb5;
+      outline: none;
+    }
+
+    /* Services list */
+    .services-list {
+      list-style: none;
+      max-width: 700px;
+      margin: 0 auto;
+      padding-left: 0;
+      color: white;
+    }
+
+    .services-list li {
+      background-color: rgba(255, 255, 255, 0.1);
+      margin-bottom: 15px;
+      padding: 15px 20px;
+      border-radius: 8px;
+      font-weight: 600;
+      position: relative;
+      padding-left: 40px;
+      box-shadow: 0 0 8px rgba(0,0,0,0.3);
+      backdrop-filter: blur(5px);
+    }
+
+    .services-list li::before {
+      content: "✔";
+      position: absolute;
+      left: 15px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: #aad4ff;
+      font-weight: bold;
+    }
+
+    /* Contact form */
+    form {
+      max-width: 500px;
+      margin: 0 auto;
+      background: rgba(255, 255, 255, 0.1);
+      padding: 25px;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.2);
+      backdrop-filter: blur(6px);
+      color: white;
+    }
+
+    form label {
+      display: block;
+      margin-bottom: 6px;
+      font-weight: 600;
+      color: #aad4ff;
+    }
+
+    form input[type="text"],
+    form input[type="email"],
+    form textarea {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 15px;
+      border: 2px solid #ddd;
+      border-radius: 5px;
+      font-size: 1rem;
+      resize: vertical;
+      transition: border-color 0.3s;
+      background-color: rgba(255,255,255,0.9);
+      color: #333;
+    }
+
+    form input[type="text"]:focus,
+    form input[type="email"]:focus,
+    form textarea:focus {
+      border-color: #0073e6;
+      outline: none;
+    }
+
+    form button {
+      background-color: #0073e6;
+      color: white;
+      border: none;
+      padding: 12px 20px;
+      font-size: 1rem;
+      border-radius: 5px;
+      cursor: pointer;
+      font-weight: 700;
+      transition: background-color 0.3s ease;
+      width: 100%;
+    }
+
+    form button:hover {
+      background-color: #005bb5;
+    }
+
+    footer {
+      background-color: rgba(0, 64, 128, 0.8);
+      color: #ccc;
+      text-align: center;
+      padding: 15px 20px;
+      font-size: 0.9rem;
+      position: relative;
+      z-index: 10;
+    }
+  </style>
+</head>
+<body>
+  <video autoplay muted loop playsinline id="bg-video">
+    <source src="C:\Users\shamr\Downloads\website\galaxy_smart_solutions_website\bgvideo.mp4.mp4" type="video/mp4" />
+    Your browser does not support the video tag.
+  </video>
+
+  <div id="overlay"></div>
+
+  <header>
+    <div class="logo">
+      <a href="index.html">
+        <!-- Replace with your logo path -->
+        <img src="images/galaxy smart sol logo.png" alt="Galaxy Smart Solutions FZE">
+    </div>
+    
+      <div class="mobile-menu-wrapper">
+  <button class="hamburger" id="hamburger">
+    <div class="bar"></div>
+    <div class="bar"></div>
+    <div class="bar"></div>
+  </button>
+      <nav class="mobile-nav" id="mobileNav">
+        
+    <a href="/">Home</a>
+    <a href="Electricals.html">Electricals</a>
+    <a href="testequipments.html">Test Equipment</a>
+    <a href="relays.html">Relays</a>
+    <a href="products.html">Audio & Video</a>
+    <a href="networking.html">Networking</a>
+    <a href="cart.html" class="cart-link">Cart (<span id="mobileCartCount">0</span>)</a>
+     
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero" role="banner">
+      <h1>Galaxy Smart Solutions FZE</h1>
+      <p>Your trusted partner for quality products and excellent services. Explore what we have to offer and get in touch!</p>
+    </section>
+
+    <section id="products" tabindex="-1">
+      <h2>Our Products</h2>
+      <div class="products-grid" role="list">
+        <article class="product-card" role="listitem" tabindex="0">
+          <img src="images/fluke digital multimetre.png" alt="Product 1 image" />
+          <h3>fluke digital multimetre</h3>
+          <p> FLUKE Testing Equipments available for your industries requirement </p>
+        </article>
+        <article class="product-card" role="listitem" tabindex="0">
+          <img src="products/images/HDMI TO AV.png" alt="Product 2 image" />
+          <h3>  HDMI TO AV</h3>
+          <p>All kinds of Data And Networking Cables and accessories Available.</p>
+        </article>
+        <article class="product-card" role="listitem" tabindex="0">
+          <img src="relays/images/4pdt relay type.png" alt="Product 3 image" />
+          <h3>Relays</h3>
+          <p>All Kinds of Relays Available .</p>
+        </article>
+      </div>
+      <div style="text-align:center;">
+        <a href="finalprdts.html" class="btn-view-more">View More</a>
+      </div>
+    </section>
+
+    <section id="services" tabindex="-1">
+      <h2>Our Services</h2>
+      <ul class="services-list">
+        <li>We Provide All kind of Products with quality and reliability/li>
+        <li>All Kinds of Brands Available</li>
+        <li>Electrical , Electronics and IT Networking accessories Provider </li>
+        <li>ENQUIRE NOW</li>
+      </ul>
+    </section>
+
+  <input type="text" name="_gotcha" style="display:none" />
+  <!-- your inputs -->
+  <button type="submit">Send Message</button>
+  
+
+
+    <section id="contact" tabindex="-1">
+      <h2>Contact Us</h2>
+      <form id="contactForm" aria-label="Contact form">
+        <form
+  id="contactForm"
+  action="https://formspree.io/f/xeoknbnv"
+  method="POST"
+>
+        <label for="name">Name *</label>
+        <input type="text" id="name" name="name" required placeholder="Your full name" />
+
+        <label for="email">Email *</label>
+        <input type="email" id="email" name="email" required placeholder="you@example.com" />
+
+        <label for="message">Message *</label>
+        <textarea id="message" name="message" rows="5" required placeholder="Write your message here"></textarea>
+
+        <button type="submit">Send Message</button>
+      </form>
+    </section>
+  </main>
+
+  <footer>
+    &copy; 2025 YourCompany. All rights reserved.
+  </footer>
+
+  <script>
+     document.addEventListener('DOMContentLoaded', function() 
+     {
+    const hamburger = document.getElementById('hamburger');
+    const mobileNav = document.getElementById('mobileNav');
+     });
+     
+    // Toggle mobile menu
+    if (hamburger && mobileNav) {
+      hamburger.addEventListener('click', function() {
+        this.classList.toggle('active');
+        mobileNav.classList.toggle('active');
+      });
+      }
+ 
+    // Close menu when clicking links
+    document.querySelectorAll('.mobile-nav a').forEach(link => {
+      link.addEventListener('click', () => {
+        hamburger.classList.remove('active');
+        mobileNav.classList.remove('active');
+      });
+    });
+
+
+    // Allow toggle via keyboard (Enter or Space)
+    hamburger.addEventListener('keydown', (e) => {
+      if(e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        navUl.classList.toggle('show');
+      }
+    });
+
+    // Simple form submission handler (for demo)
+    const form = document.getElementById('contactForm');
+    form.addEventListener('submit', e => {
+      e.preventDefault();
+      alert('Thank you for contacting us, ' + form.name.value + '! We will get back to you shortly.');
+      form.reset();
+    });
+  
+  </script>
+</body>
+</html>

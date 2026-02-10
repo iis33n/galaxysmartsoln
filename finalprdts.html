@@ -1,0 +1,926 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Galaxy Smart Solutions FZE - All Products</title>
+  <style>
+    .enquire-btn, 
+  .product-card button.enquire-btn {
+    display: inline-block;
+    margin-top: 10px;
+    background: #0cd72b;
+    color: white;
+    padding: 10px 20px;
+    text-decoration: none;
+    border-radius: 6px;
+    font-weight: bold;
+    transition: background 0.3s ease;
+    border: none;
+     cursor: pointer;
+    font-size: 16px;
+    width: auto;
+  }
+  .enquire-btn:hover, 
+  .product-card button.enquire-btn:hover {
+    background: #003f8a;
+  }
+    /* Base styles */
+    h1, h2, h3 {
+      color: #ddd;
+    }
+    
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #100101;
+    }
+
+    .category-nav {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 30px;
+      padding: 20px;
+      background-color: #115709;
+      list-style: none;
+      margin: 0;
+    }
+
+    .category-nav li {
+      margin: 0;
+    }
+
+    .category-btn {
+      font-size: 16px;
+      font-weight: 500;
+      text-decoration: none;
+      color: #f2eeee;
+      transition: 0.2s ease;
+    }
+
+    .category-btn:hover,
+    .category-btn.active {
+      color: #00a89c;
+      font-weight: 600;
+    }
+
+    /* Product grid styles */
+    .product-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+      padding: 20px;
+    }
+
+    .product-card {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      background: #070707;
+      border-radius: 10px;
+      padding: 20px;
+      text-align: center;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      transition: transform 0.3s ease;
+    }
+
+    .product-card:hover {
+      transform: translateY(-5px);
+    }
+
+    .product-card p {
+      flex-grow: 1;
+      color: #bbb;
+    }
+
+    .buy-button,
+    .enquire-btn,
+    .add-btn {
+      display: inline-block;
+      margin-top: 10px;
+      background: #0cd72b;
+      color: white;
+      padding: 10px 20px;
+      text-decoration: none;
+      border-radius: 6px;
+      font-weight: bold;
+      transition: background 0.3s ease;
+      border: none;
+      cursor: pointer;
+    }
+
+    .buy-button:hover,
+    .enquire-btn:hover,
+    .add-btn:hover {
+      background: #003f8a;
+    }
+
+    .product-card img {
+      max-width: 100%;
+      height: auto;
+      border-radius: 8px;
+      margin-bottom: 15px;
+    }
+
+    /* Show All button styles */
+    .show-all-container {
+      text-align: center;
+      margin: 20px 0;
+    }
+.back-button {
+padding:12px 30px;
+background-color: #005bbb;
+color: white;
+      border: none;
+      border-radius: 6px;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+
+    .show-all-btn {
+      padding: 12px 30px;
+      background-color: #25d366;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    }
+
+    .show-all-btn:hover {
+      background-color: #128C7E;
+      transform: translateY(-2px);
+    }
+
+    /* Category section control */
+    .category-section {
+      display: none;
+      animation: fadeIn 0.5s ease;
+    }
+    .side-enquire-btn {
+  display: inline-block;
+  background: #0cd72b; /* Green */
+  color: white;
+  padding: 12px 20px;
+  text-decoration: none;
+  font-weight: bold;
+  border-radius: 6px;
+  position: fixed;
+  right: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+  transition: background 0.3s;
+  z-index: 1000;
+}
+.side-enquire-btn:hover {
+  background: #009f22;
+}
+
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    /* Show first category by default */
+    #testing-equipments {
+      display: block;
+    }
+
+    /* Category heading styles */
+    .category-heading {
+      color: #0cd72b;
+      margin: 30px 0 15px 20px;
+      padding-bottom: 10px;
+      border-bottom: 2px solid #0cd72b;
+    }
+
+    /* WhatsApp float button */
+    .whatsapp-float {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      z-index: 100;
+    }
+
+    .whatsapp-float img {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+      transition: transform 0.3s ease;
+    }
+
+    .whatsapp-float img:hover {
+      transform: scale(1.1);
+    }
+
+    /* Badge styles */
+    .badge {
+      display: inline-block;
+      background: #25d366;
+      color: white;
+      padding: 3px 8px;
+      border-radius: 4px;
+      font-size: 12px;
+      margin-bottom: 10px;
+    }
+  </style>
+</head>
+</body>
+
+  <a class="back-button" href="index.html">Home</a>
+  
+  <ul class="category-nav">
+    
+  
+    <li><a class="category-btn" href="#testing-equipments">Test Equipments</a></li>
+    <li><a class="category-btn" href="#data-networking">Data & Networking</a></li>
+    <li><a class="category-btn" href="#electricals">Electricals</a></li>
+    <li><a class="category-btn" href="#relays">Relays</a></li>
+    <li><a class="category-btn" href="#audio-video">Audio & Video</a></li>
+    <li><a class="category-btn active" href="#show-all">Show All</a></li>
+    <li><a class="category-btn active" href="cart.html">Cart</a></li>
+  </ul>
+
+  <!-- Show All Button -->
+  <div class="show-all-container">
+    <button id="showAllBtn" class="show-all-btn">Show All Products</button>
+  </div>
+
+  <a href="mailto:sales@galaxysmartsolutionsfze.com?subject=Product%20Enquiry&body=Hello,%20I%20would%20like%20to%20know%20more%20about..."
+   class="side-enquire-btn">
+   ENQUIRE
+</a>
+
+
+  <!-- Testing Equipment Section -->
+  <section id="testing-equipments" class="category-section">
+    <h2 class="category-heading">Test Equipment</h2>
+    <div class="product-grid">
+      <div class="product-card">
+        <img src="Testequipments/images/temp infrared meter fluke.png" alt="FLUKE Infrared Temp Meter">
+        <h3>FLUKE Infrared Temp Meter</h3>
+        <p>High-accuracy contactless temperature measurement tool.</p>
+        <a class="enquire-btn" href="https://wa.me/971558249190?text=I want to enquire about FLUKE INFRARED TEMP METER" target="_blank">Enquire</a>
+      </div>
+
+      <div class="product-card">
+        <img src="Testequipments/images/clamp fluke.png" alt="FLUKE Clamp Meter">
+        <h3>FLUKE Clamp Meter</h3>
+        <p>Professional AC/DC clamp meter for electrical diagnostics.</p>
+        <a class="enquire-btn" href="https://wa.me/971558249190?text=I want to enquire about FLUKE CLAMP METER" target="_blank">Enquire</a>
+      </div>
+
+      <div class="product-card">
+        <img src="Testequipments/images/Hioki clamp meter.png" alt="HIOKI Clamp Meter">
+        <h3>HIOKI Clamp Meter</h3>
+        <p>Reliable current clamp meter with precise readings.</p>
+        <a class="enquire-btn" href="https://wa.me/971558249190?text=I want to enquire about HIOKI CLAMP METER" target="_blank">Enquire</a>
+      </div>
+
+      <div class="product-card">
+        <img src="Testequipments/images/sanwa multimeter.png" alt="SANWA Analog Multimeter">
+        <h3>SANWA Analog Multimeter</h3>
+        <p>Classic analog multimeter for accurate electrical measurements.</p>
+        <a class="enquire-btn" href="https://wa.me/971558249190?text=I want to enquire about SANWA ANALOG MULTIMETER" target="_blank">Enquire</a>
+      </div>
+
+      <div class="product-card">
+        <img src="Testequipments/images/fluke digital multimetre.png" alt="FLUKE Digital Multimeter">
+        <h3>FLUKE Digital Multimeter</h3>
+        <p>Digital multimeter for voltage, current, resistance, and continuity checks.</p>
+        <a class="enquire-btn" href="https://wa.me/971558249190?text=I want to enquire about FLUKE DIGITAL MULTIMETER" target="_blank">Enquire</a>
+      </div>
+
+      <div class="product-card">
+        <img src="Testequipments/images/fluke test leads.png" alt="FLUKE Test Leads">
+        <h3>FLUKE Test Leads</h3>
+        <p>High-quality leads for safe and precise test connections.</p>
+        <a class="enquire-btn" href="https://wa.me/971558249190?text=I want to enquire about FLUKE TEST LEADS" target="_blank">Enquire</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Data & Networking Section -->
+  <section id="data-networking" class="category-section">
+    <h2 class="category-heading">Data & Networking</h2>
+    <div class="product-grid">
+      <div class="product-card">
+        <img src="data and networking/images/CAT6 NETWORK TESTER.png" alt="CAT6 Cable Tester">
+        <h3>CAT6 Cable Tester</h3>
+        <p>Professional-grade cat6 Cable Tester to support modern network infrastructure.</p>
+        <a href="https://wa.me/971558249190?text=I want to purchase CAT6 CABLE TESTER" class="buy-button">Buy Now</a>
+      </div>
+
+      <div class="product-card">
+        <img src="data and networking/images/CAT6BOOTS.png" alt="CAT6 BOOTS">
+        <h3>CAT6 / CAT6 BOOTS</h3>
+        <p>Professional-grade cat6 Boots to support modern network infrastructure.</p>
+        <a href="https://wa.me/971558249190?text=I want to purchase CAT6 BOOTS" class="buy-button">Buy Now</a>
+      </div>
+
+      <div class="product-card">
+        <img src="data and networking/images/HDMI ETHERNET EXTENDER.png" alt="HDMI ETHERNET EXTENDER">
+        <h3>HDMI ETHERNET EXTENDER</h3>
+        <p>Professional-grade HDMI ETHERNET EXTENDER to support modern network infrastructure.</p>
+        <a href="https://wa.me/971558249190?text=I want to purchase HDMI ETHERNET EXTENDER" class="buy-button">Buy Now</a>
+      </div>
+
+      <div class="product-card">
+        <img src="data and networking/images/HDMI TYPE C FIBER ACTIVE CABLE.png" alt="HDMI TYPE C FIBER ACTIVE CABLE">
+        <h3>HDMI TYPE C FIBER ACTIVE CABLE</h3>
+        <p>Professional-grade HDMI TYPE C FIBER ACTIVE CABLE to support modern network infrastructure.</p>
+        <a href="https://wa.me/971558249190?text=I want to purchase HDMI TYPE C FIBER ACTIVE CABLE" class="buy-button">Buy Now</a>
+      </div>
+
+      <div class="product-card">
+        <img src="data and networking/images/OS1.png" alt="OS-1/OM3 FIBER PATCH CORD">
+        <h3>OS-1/OM3 FIBER PATCH CORD</h3>
+        <p>Professional-grade OS-1/OM3 FIBER PATCH CORD to support modern network infrastructure.</p>
+        <a href="https://wa.me/971558249190?text=I want to purchase OS-1/OM3 FIBER PATCH CORD" class="buy-button">Buy Now</a>
+      </div>
+
+      <div class="product-card">
+        <img src="data and networking/images/RJ45 CAT6 CRIMP TOOLS.png" alt="RJ45 CAT6 CRIMP TOOLS">
+        <h3>RJ45 CAT6 CRIMP TOOLS</h3>
+        <p>Professional-grade RJ45 CAT6 CRIMP TOOLS to support modern network infrastructure.</p>
+        <a href="https://wa.me/971558249190?text=I want to purchase RJ45 CAT6 CRIMP TOOLS" class="buy-button">Buy Now</a>
+      </div>
+
+      <div class="product-card">
+        <img src="data and networking/images/RJ45 CAT6.png" alt="CAT6 RJ45 PLUGS">
+        <h3>CAT6 RJ45 PLUGS</h3>
+        <p>Professional-grade CAT6 RJ45 PLUGS to support modern network infrastructure.</p>
+        <a href="https://wa.me/971558249190?text=I want to purchase CAT6 RJ45 PLUGS" class="buy-button">Buy Now</a>
+      </div>
+
+      <div class="product-card">
+        <img src="data and networking/images/usb to rsb 232.png" alt="USB TO RS232 ADAPTER">
+        <h3>USB TO RS232 ADAPTER</h3>
+        <p>Professional-grade USB TO RS232 ADAPTER to support modern network infrastructure.</p>
+        <a href="https://wa.me/971558249190?text=I want to purchase USB TO RS232 ADAPTER" class="buy-button">Buy Now</a>
+      </div>
+
+      <div class="product-card">
+        <img src="data and networking/images/3M EXTREME DOUBLE SIDE VELCRO.png" alt="Double-sided Velcro">
+        <h3>3M Double-sided Velcro</h3>
+        <p>Professional-grade 3M double-sided velcro to support modern network infrastructure.</p>
+        <a href="https://wa.me/971558249190?text=I want to purchase Double-sided Velcro" class="buy-button">Buy Now</a>
+      </div>
+
+      <div class="product-card">
+        <img src="data and networking/images/XLR .png" alt="XLR MALE AND FEMALE">
+        <h3>XLR MALE AND FEMALE</h3>
+        <p>Professional-grade XLR MALE AND FEMALE to support modern network infrastructure.</p>
+        <a href="https://wa.me/971558249190?text=I want to purchase XLR MALE AND FEMALE" class="buy-button">Buy Now</a>
+      </div>
+
+      <div class="product-card">
+        <img src="data and networking/images/rack and screws.png" alt="Rack Screws & Cage Nuts">
+        <h3>Rack Screws & Cage Nuts</h3>
+        <p>Professional-grade rack screws & cage nuts to support modern network infrastructure.</p>
+        <a href="https://wa.me/971558249190?text=I want to purchase Rack Screws & Cage Nuts" class="buy-button">Buy Now</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Electricals Section -->
+  <section id="electricals" class="category-section">
+    <h2 class="category-heading">Electricals</h2>
+    <div class="product-grid">
+      <article class="product-card" data-id="el-ext-2-3-5m" data-category="electricals" data-name="Power Extension 2 Way (3m, 5m)">
+        <img src="Electricals/images/EC1.png" alt="Power Extension 2 Way">
+        <div class="body">
+          <span class="badge">Electricals</span>
+          <h3>Power Extension 2,3,4,5,6 Way</h3>
+          <p>Available in 3m and 5m lengths.</p>
+          <button class="add-btn">Add to Cart</button>
+        </div>
+      </article>
+
+      <article class="product-card" data-id="3-IN UK PLUG TO IEC FEMALE POWER CORD" data-category="electricals" data-name="3PIN UK PLUG TO IEC FEMALE POWER CORD">
+        <img src="Electricals/images/EC2.png" alt="3PIN UK PLUG TO IEC FEMALE POWER CORD">
+        <div class="body">
+          <span class="badge">Electricals</span>
+          <h3>3PIN UK PLUG TO IEC FEMALE POWER CORD</h3>
+          <p>Lengths: 1.8m, 3m, 5m, 10m.</p>
+          <button class="add-btn">Add to Cart</button>
+        </div>
+      </article>
+
+      <article class="product-card" data-id="el-emergency-push" data-category="electricals" data-name="iec male to female power cord">
+        <img src="Electricals/images/EC4.png" alt="IEC MALE TO FEMALE POWER CORD">
+        <div class="body">
+          <span class="badge">Electricals</span>
+          <h3>IEC MALE TO FEMALE POWER CORD</h3>
+          <p>1.8M,3M,5M,10M available</p>
+          <button class="add-btn">Add to Cart</button>
+        </div>
+      </article>
+
+      <article class="product-card" data-id="el-pilot-lamp" data-category="electricals" data-name="22mm pilot lamp">
+        <img src="Electricals/images/lamp12.png" alt="22MM PILOT LAMP">
+        <div class="body">
+          <span class="badge">Electricals</span>
+          <h3>PILOT LAMP</h3>
+          <p>22MM</p>
+          <button class="add-btn">Add to Cart</button>
+        </div>
+      </article>
+
+      <article class="product-card" data-id="el-push-button" data-category="electricals" data-name="16MM pilot lamp">
+        <img src="Electricals/images/pilot lamp.png" alt="16MM PILOT LAMP">
+        <div class="body">
+          <span class="badge">Electricals</span>
+          <h3>PILOT LAMP 16MM</h3>
+          <button class="add-btn">Add to Cart</button>
+        </div>
+      </article>
+
+      <article class="product-card" data-id="el-din-rail" data-category="electricals" data-name="DIN Rail 1.8m">
+        <img src="Electricals/images/EC12.png" alt="DIN Rail 1.8m">
+        <div class="body">
+          <span class="badge">Electricals</span>
+          <h3>DIN Rail 1.8m</h3>
+          <button class="add-btn">Add to Cart</button>
+        </div>
+      </article>
+
+      <article class="product-card" data-id="el-terminal-block" data-category="electricals" data-name="Ceramic Terminal Blocks">
+        <img src="Electricals/images/EC13.png" alt="Ceramic Terminal Blocks">
+        <div class="body">
+          <span class="badge">Electricals</span>
+          <h3>Ceramic Terminal Blocks</h3>
+          <p>Multiple sizes available.</p>
+          <button class="add-btn">Add to Cart</button>
+        </div>
+      </article>
+
+      <article class="product-card" data-id="el-terminal-lug" data-category="electricals" data-name="Terminal Lugs (Different Sizes)">
+        <img src="Electricals/images/EC14.png" alt="Terminal Lugs">
+        <div class="body">
+          <span class="badge">Electricals</span>
+          <h3>Terminal Lugs</h3>
+          <p>All sizes available.</p>
+          <button class="add-btn">Add to Cart</button>
+        </div>
+      </article>
+
+      <article class="product-card" data-id="el-contactors" data-category="electricals" data-name="Contactors (Different Poles and Amps)">
+        <img src="Electricals/images/EC16.png" alt="Contactors">
+        <div class="body">
+          <span class="badge">Electricals</span>
+          <h3>Contactors</h3>
+          <p>Various poles and amperage ratings.</p>
+          <button class="add-btn">Add to Cart</button>
+        </div>
+      </article>
+
+      <article class="product-card" data-id="el-power-cable" data-category="electricals" data-name="Electric Power Cable">
+        <img src="Electricals/images/EC9.png" alt="Electric Power Cable">
+        <div class="body">
+          <span class="badge">Electricals</span>
+          <h3>Electric Power Cable</h3>
+          <p>0.75mm, 1mm, 1.5mm, 3mm (1C, 2C, 3C).</p>
+          <button class="add-btn">Add to Cart</button>
+        </div>
+      </article>
+
+      <article class="product-card" data-id="el-emergency-push" data-category="electricals" data-name="Emergency Push Button Switch">
+        <img src="Electricals/images/emergency push switch.png" alt="Emergency Push Button Switch">
+        <div class="body">
+          <span class="badge">Electricals</span>
+          <h3>Emergency Push Button Switch</h3>
+          <button class="add-btn">Add to Cart</button>
+        </div>
+      </article>
+
+      <article class="product-card" data-id="el-POWER-SOCKET FACE PLATE" data-category="electricals" data-name="POWER SOCKET FACE PLATE">
+        <img src="Electricals/images/EC10.png" alt="POWER SOCKET FACE PLATE">
+        <div class="body">
+          <span class="badge">Electricals</span>
+          <h3>POWER SOCKET FACE PLATE</h3>
+          <p>SINGLE GANG DOUBLE GANG</p>
+          <button class="add-btn">Add to Cart</button>
+        </div>
+      </article>
+
+      <article class="product-card" data-id="el-BOOTLACE-AND CRIMP TOOL" data-category="electricals" data-name="BOOTLACE AND CRIMP TOOL">
+        <img src="Electricals/images/bootlace.png" alt="BOOTLACE AND CRIMP TOOL">
+        <div class="body">
+          <span class="badge">Electricals</span>
+          <h3>BOOTLACE AND CRIMP TOOL</h3>
+          <button class="add-btn">Add to Cart</button>
+        </div>
+      </article>
+
+      <article class="product-card" data-id="el-ELCB-RCCB" data-category="electricals" data-name="ELCB RCCB">
+        <img src="Electricals/images/ELRCCB.png" alt="ELCB RCCB">
+        <div class="body">
+          <span class="badge">Electricals</span>
+          <h3>ELCB RCCB</h3>
+          <p>DIFFERENT BRANDS</p>
+          <button class="add-btn">Add to Cart</button>
+        </div>
+      </article>
+
+      <article class="product-card" data-id="el-emergency-push-box" data-category="electricals" data-name="Emergency Push Button Box">
+        <img src="Electricals/images/emergency push button box.png" alt="Emergency Push Button Box">
+        <div class="body">
+          <span class="badge">Electricals</span>
+          <h3>Emergency Push Button Box</h3>
+          <button class="add-btn">Add to Cart</button>
+        </div>
+      </article>
+
+      <article class="product-card" data-id="el-3way-control" data-category="electricals" data-name="3way control switch">
+        <img src="Electricals/images/3way control switch .png" alt="3way control switch">
+        <div class="body">
+          <span class="badge">Electricals</span>
+          <h3>3way control switch</h3>
+          <button class="add-btn">Add to Cart</button>
+        </div>
+      </article>
+
+      <article class="product-card" data-id="el-push-button" data-category="electricals" data-name="Push Button Switches">
+        <img src="Electricals/images/push button 2way,3way.png" alt="Push Button Switches">
+        <div class="body">
+          <span class="badge">Electricals</span>
+          <h3>Push Button Switches</h3>
+          <p>1 Way, 2 Way, and 3 Way with box.</p>
+          <button class="add-btn">Add to Cart</button>
+        </div>
+      </article>
+
+      <article class="product-card" data-id="el-breakers-mccb" data-category="electricals" data-name="Circuit Breakers & MCCB">
+        <img src="Electricals/images/EC18.png" alt="Circuit Breakers and MCCB">
+        <div class="body">
+          <span class="badge">Electricals</span>
+          <h3>Circuit Breakers & MCCB</h3>
+          <p>Wide range of ratings and types.</p>
+          <button class="add-btn">Add to Cart</button>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <!-- Relays Section -->
+  <section id="relays" class="category-section">
+    <h2 class="category-heading">Relays</h2>
+    <div class="product-grid">
+      <article class="product-card" data-name="DPDT 8PIN RELAY">
+        <img src="images/dpdt 8pin relay.png" alt="DPDT 8PIN RELAY">
+        <h3>DPDT 8PIN RELAY</h3>
+        <p>High-quality double pole double throw relay for control circuits.</p>
+        <button class="enquire-btn"onclick="enquireProduct('DPDT 8PIN RELAY')">Enquire</button>
+      </article>
+
+      <article class="product-card" data-name="4PDT RELAY">
+        <img src="images/4pdt relay.png" alt="4PDT RELAY">
+        <h3>4PDT RELAY</h3>
+        <p>Four-pole double-throw relay ideal for switching applications.</p>
+        <button class="enquire-btn"onclick="enquireProduct('4PDT RELAY')">Enquire</button>
+      </article>
+
+      <article class="product-card" data-name="4PDT RELAY SOCKET DIN RAIL TYPE">
+        <img src="images/4pdt relay type.png" alt="4PDT RELAY SOCKET DIN RAIL TYPE">
+        <h3>4PDT RELAY SOCKET (DIN RAIL)</h3>
+        <p>DIN rail mountable socket for 4PDT relays.</p>
+        <button class="enquire-btn"onclick="enquireProduct('4PDT RELAY SOCKET DIN RAIL TYPE')">Enquire</button>
+      </article>
+
+      <article class="product-card" data-name="DPDT 8PIN RELAY SOCKET">
+        <img src="images/dpdt 8pin relay socket.png" alt="DPDT 8PIN RELAY SOCKET">
+        <h3>DPDT 8PIN RELAY SOCKET</h3>
+        <p>Socket base for 8-pin DPDT relays, panel or DIN mount.</p>
+        <button class="enquire-btn"onclick="enquireProduct('DPDT 8PIN RELAY SOCKET')">Enquire</button>
+      </article>
+
+      <article class="product-card" data-name="MINIATURE RELAY 5PIN">
+        <img src="images/Miniature .png" alt="MINIATURE RELAY 5PIN">
+        <h3>MINIATURE RELAY 5PIN</h3>
+        <p>Compact 5-pin miniature relay for compact control panels.</p>
+        <button class="enquire-btn"onclick="enquireProduct('MINIATURE RELAY 5PIN')">Enquire</button>
+      </article>
+    </div>
+  </section>
+
+  <!-- Audio & Video Section -->
+  <section id="audio-video" class="category-section">
+    <h2 class="category-heading">Audio & Video</h2>
+    <div class="product-grid">
+      <div class="product-card">
+        <img src="products/images/audio-cable.png" alt="UGREEN HDMI to VGA Converter">
+        <h3>UGREEN HDMI to VGA Converter</h3>
+        <p>(FEMALE to Male) for smart networking.</p>
+        <a href="https://wa.me/971558249190?text=I want to purchase HDMI TO VGA CONVERTER" class="buy-button">Buy Now</a>
+      </div>
+
+      <div class="product-card">
+        <img src="products/images/audio-cable2.png" alt="UGREEN HDMI to VGA Converter">
+        <h3>UGREEN HDMI to VGA Converter</h3>
+        <p>(Male to Female)</p>
+        <a href="https://wa.me/971558249190?text=HDMI TO VGA MALE TO FEMALE" class="buy-button">Buy Now</a>
+      </div>
+
+      <div class="product-card">
+        <img src="products/images/A to B .png" alt="A TO B PRINTER CABLE">
+        <h3>A to B printer cable 3.0V</h3>
+        <p>15M,3M available</p>
+        <a href="https://wa.me/971558249190?text=A TO B PRINTER CABLE 3.0V 15M,3M" class="buy-button">Buy Now</a>
+      </div>
+
+      <div class="product-card">
+        <img src="products/images/HDMI TO DVI ADAPTORS.png" alt="HDMI TO DVI ADAPTER">
+        <h3>HDMI TO DVI ADAPTER</h3>
+        <a href="https://wa.me/971558249190?text=HDMI TO DVI ADAPTER" class="buy-button">Buy Now</a>
+      </div>
+
+      <div class="product-card">
+        <img src="products/images/audio-cable3.png" alt="HDMI TO DVI MALE CABLE">
+        <h3>HDMI TO DVI MALE CABLE</h3>
+        <p>High-quality and reliable.</p>
+        <a href="https://wa.me/971558249190?text=dvi male cable" class="buy-button">Buy Now</a>
+      </div>
+
+      <div class="product-card">
+        <img src="products/images/audio-cable4.png" alt="USB EXTENTION CABLE">
+        <h3>USB EXTENTION CABLE</h3>
+        <p>5M/10M/15M/20 available</p>
+        <a href="https://wa.me/971558249190?text=I want to purchase USB EXTENTION CABLE 5M/10M/15M/20" class="buy-button">Buy Now</a>
+      </div>
+
+      <div class="product-card">
+        <img src="products/images/audio-cable5.png" alt="VGA MALE TO MALE CABLE">
+        <h3>VGA MALE TO MALE CABLE</h3>
+        <p>Reliable VGA MALE TO MALE CABLE</p>
+        <a href="https://wa.me/971558249190?text=I want to purchase VGA MALE TO MALE CABLE" class="buy-button">Buy Now</a>
+      </div>
+
+      <div class="product-card">
+        <img src="products/images/audio-cable6.png" alt="MINI DP TO HDMI FEMALE ADAPTOR">
+        <h3>MINI DP TO HDMI FEMALE ADAPTOR</h3>
+        <p>High-quality MINI DP TO HDMI FEMALE ADAPTOR</p>
+        <a href="https://wa.me/971558249190?text=I want to purchase MINI DP TO HDMI FEMALE ADAPTOR" class="buy-button">Buy Now</a>
+      </div>
+
+      <div class="product-card">
+        <img src="products/images/audio plugs 3.5 - 6.3mm.png" alt="AUDIO PLUGS">
+        <h3>AUDIO PLUGS</h3>
+        <p>High-quality audio plugs</p>
+        <a href="https://wa.me/971558249190?text=I want to purchase AUDIO PLUGS" class="buy-button">Buy Now</a>
+      </div>
+
+      <div class="product-card">
+        <img src="products/images/SDI TO HDMI .png" alt="SDI TO HDMI">
+        <h3>SDI TO HDMI</h3>
+        <p>High-quality SDI TO HDMI Accessories</p>
+        <a href="https://wa.me/971558249190?text=I want to purchase SDI TO HDMI" class="buy-button">Buy Now</a>
+      </div>
+
+      <div class="product-card">
+        <img src="products/images/HDMI AOC .png" alt="HDMI AOC">
+        <h3>HDMI AOC</h3>
+        <p>High-quality HDMI AOC ITEMS</p>
+        <a href="https://wa.me/971558249190?text=I want to purchase HDMI AOC" class="buy-button">Buy Now</a>
+      </div>
+
+      <div class="product-card">
+        <img src="products/images/USB A TO C VSC AND TYPE C TO C.png" alt="USB A TO C AND VSC TYPE C TO C">
+        <h3>USB A TO C AND VSC TYPE C TO C</h3>
+        <p>High-quality USB A TO C AND VSC TYPE C TO C ITEMS</p>
+        <a href="https://wa.me/971558249190?text=I want to purchase USB A TO C AND VSC" class="buy-button">Buy Now</a>
+      </div>
+
+      <div class="product-card">
+        <img src="products/images/DP TO HDMI .png" alt="DP TO HDMI">
+        <h3>DP TO HDMI</h3>
+        <p>High-quality DP TO HDMI</p>
+        <a href="https://wa.me/971558249190?text=I want to purchase DP TO HDMI" class="buy-button">Buy Now</a>
+      </div>
+
+      <div class="product-card">
+        <img src="products/images/HDMI TO AV.png" alt="HDMI TO AV">
+        <h3>HDMI TO AV</h3>
+        <p>High-quality HDMI TO AV</p>
+        <a href="https://wa.me/971558249190?text=I want to purchase HDMI TO AV" class="buy-button">Buy Now</a>
+      </div>
+
+      <div class="product-card">
+        <img src="products/images/Hdmi cable ugreen .png" alt="HDMI Cable Ugreen">
+        <h3>HDMI CABLE UGREEN 4k</h3>
+        <p>1m,1.5m,2m,3m,4m,5m,7m,10m,12m,15m,20m,25m available</p>
+        <a href="https://wa.me/971558249190?text=I want to purchase HDMI CABLE UGREEN" class="buy-button">Buy Now</a>
+      </div>
+
+      <div class="product-card">
+        <img src="products/images/STEREO PLUG .png" alt="STEREO PLUGS 1/4">
+        <h3>AUDIO PLUGS</h3>
+        <p>STEREO PLUGS 1/4</p>
+        <a href="https://wa.me/971558249190?text=I want to purchase STEREO PLUGS 1/4" class="buy-button">Buy Now</a>
+      </div>
+
+      <div class="product-card">
+        <img src="products/images/HDMI EXTENDER.png" alt="HDMI EXTENDER">
+        <h3>HDMI EXTENDER</h3>
+        <p>4KX60HZ OVER ETHERNET 50M,100M,200M</p>
+        <a href="https://wa.me/971558249190?text=I want to purchase HDMI EXTENDER" class="buy-button">Buy Now</a>
+      </div>
+
+      <div class="product-card">
+        <img src="products/images/VGA MALE TO HDMI.png" alt="VGA MALE TO HDMI ADAPTER">
+        <h3>VGA MALE TO HDMI ADAPTER</h3>
+        <p>High-quality VGA MALE TO HDMI ADAPTERS</p>
+        <a href="https://wa.me/971558249190?text=I want to purchase VGA MALE TO HDMI ADAPTER" class="buy-button">Buy Now</a>
+      </div>
+    </div>
+  </section>
+
+  <footer class="site-footer">
+    <p>&copy; 2025 Galaxy Smart Solutions. All rights reserved.</p>
+  </footer>
+
+  <!-- WhatsApp float button -->
+  <a href="https://wa.me/971558249190" class="whatsapp-float" target="_blank" title="Chat with us on WhatsApp">
+    <img src="images/whatsapp.png" alt="WhatsApp">
+  </a>
+<script src="shop-noprice.js"></script>
+  <div id="cart" style="position: fixed; bottom: 20px; right: 20px; background: #fff; border: 2px solid #005bbb; padding: 15px; border-radius: 10px; box-shadow: 0 0 10px rgba(0,0,0,0.2); max-width: 300px;"></div>
+  
+<h3 style="margin-top: 0;">🛒 Your Cart</h3>
+  <ul id="cart-items" style="list-style: none; padding: 0;"></ul>
+  <button onclick="checkout()" style="margin-top: 10px; background: #005bbb; color: white; border: none; padding: 10px 15px; border-radius: 5px; cursor: pointer;">Checkout</button>
+</div>
+
+
+
+  <script>
+    // Show All functionality
+    document.addEventListener('DOMContentLoaded', function() {
+      const showAllBtn = document.getElementById('showAllBtn');
+      let showAllMode = false;
+      
+      // Initialize - show only test equipment by default
+      document.querySelectorAll('.category-section').forEach(section => {
+        if (section.id !== 'testing-equipments') {
+          section.style.display = 'none';
+        }
+      });
+
+      // Category navigation
+      document.querySelectorAll('.category-btn').forEach(btn => {
+        btn.addEventListener('click', function(e) {
+          e.preventDefault();
+          const target = this.getAttribute('href').substring(1);
+          
+          if (target === 'all') {
+            showAllMode = true;
+            document.querySelectorAll('.category-section').forEach(section => {
+              section.style.display = 'block';
+            });
+            showAllBtn.textContent = 'Show Test Equipment Only';
+          } else {
+            showAllMode = false;
+            document.querySelectorAll('.category-section').forEach(section => {
+              section.style.display = 'none';
+            });
+            document.getElementById(target).style.display = 'block';
+            showAllBtn.textContent = 'Show All Products';
+          }
+          
+          // Update active class
+          document.querySelectorAll('.category-btn').forEach(b => b.classList.remove('active'));
+          this.classList.add('active');
+        });
+      });
+
+      showAllBtn.addEventListener('click', function() {
+        showAllMode = !showAllMode;
+        
+        if (showAllMode) {
+          // Show all categories
+          document.querySelectorAll('.category-section').forEach(section => {
+            section.style.display = 'block';
+          });
+          showAllBtn.textContent = 'Show Test Equipment Only';
+          
+          // Update active class
+          document.querySelectorAll('.category-btn').forEach(b => b.classList.remove('active'));
+          document.querySelector('.category-btn[href="#all"]').classList.add('active');
+        } else {
+          // Show only test equipment
+          document.querySelectorAll('.category-section').forEach(section => {
+            section.style.display = 'none';
+          });
+          document.getElementById('testing-equipments').style.display = 'block';
+          showAllBtn.textContent = 'Show All Products';
+          
+          // Update active class
+          document.querySelectorAll('.category-btn').forEach(b => b.classList.remove('active'));
+          document.querySelector('.category-btn[href="#testing-equipments"]').classList.add('active');
+        }
+      });
+
+      // Existing enquiry functionality
+      function enquireProduct(productName) {
+        const message = `Hello, I would like to enquire about: ${productName}`;
+        window.open(`https://wa.me/971558249190?text=${encodeURIComponent(message)}`, "_blank");
+      }
+function enquireProduct(productName) {
+    const message = `Hello, I would like to enquire about: ${productName}`;
+    window.open(`https://wa.me/971558249190?text=${encodeURIComponent(message)}`, "_blank");
+    
+    // Show toast notification
+    const toast = document.createElement('div');
+    toast.className = 'enquiry-toast';
+    toast.textContent = `Enquiry sent for ${productName}!`;
+    document.body.appendChild(toast);
+    
+    setTimeout(() => {
+      toast.remove();
+    }, 3000);
+}
+  document.querySelectorAll('.enquire-btn').forEach(button => {
+    if (!button.hasAttribute('href')) { // Only add to non-link buttons
+      button.addEventListener('click', function() {
+        const productName = this.closest('.product-card').querySelector('h3').textContent;
+        enquireProduct(productName);
+      });
+    }
+  });
+
+      // Cart functionality
+      const cart = [];
+
+      function addToCart(itemName) {
+        cart.push(itemName);
+        displayCart();
+        
+        // Show confirmation
+        const toast = document.createElement('div');
+        toast.className = 'enquiry-toast';
+        toast.textContent = `${itemName} added to cart!`;
+        document.body.appendChild(toast);
+        
+        setTimeout(() => {
+          toast.remove();
+        }, 3000);
+      }
+
+      function displayCart() {
+        const cartItems = document.getElementById("cart-items");
+        if (cartItems) {
+          cartItems.innerHTML = "";
+          cart.forEach((item, index) => {
+            const li = document.createElement("li");
+            li.textContent = item;
+            cartItems.appendChild(li);
+          });
+        }
+      }
+
+      function checkout() {
+        if (cart.length === 0) {
+          alert("Your cart is empty.");
+          return;
+        }
+        const message = `Hello, I want to purchase:\n\n${cart.map((item, i) => `${i + 1}. ${item}`).join('\n')}`;
+        window.open(`https://wa.me/971558249190?text=${encodeURIComponent(message)}`, "_blank");
+      }
+
+      // Initialize cart buttons
+      document.querySelectorAll('.add-btn').forEach(button => {
+        button.addEventListener('click', function() {
+          const productCard = this.closest('.product-card');
+          const productName = productCard.querySelector('h3').textContent;
+          addToCart(productName);
+        });
+      });
+
+      // Enquiry buttons
+      document.querySelectorAll('.enquire-btn').forEach(button => {
+        button.addEventListener('click', function(e) {
+          const productName = this.closest('.product-card').querySelector('h3').textContent;
+          const toast = document.createElement('div');
+          toast.className = 'enquiry-toast';
+          toast.textContent = `Enquiry sent for ${productName}!`;
+          document.body.appendChild(toast);
+          
+          setTimeout(() => {
+            toast.remove();
+          }, 3000);
+        });
+      });
+    });
+  </script>
+</body>
+</html>

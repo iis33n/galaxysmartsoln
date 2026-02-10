@@ -1,0 +1,594 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Home | Your Company</title>
+  <style>
+    .logo a {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+}
+
+.logo img {
+  height: 50px;           /* Keeps logo size consistent */
+  width: auto;            /* Maintains aspect ratio */
+  object-fit: contain;    /* Prevents distortion */
+  margin-right: 10px;     /* Space between logo and text */
+}
+
+.company-name {
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: white;
+}
+
+    /* Reset */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      line-height: 1.6;
+      color: white;
+      position: relative;
+      background: transparent;
+      min-height: 100vh;
+      z-index: 0;
+    }
+
+    /* Background video */
+    #bg-video {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      object-fit: cover;
+      z-index: -2;
+      pointer-events: none;
+    }
+
+    /* Overlay for better text visibility */
+    #overlay {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100vw;
+      height: 100vh;
+      background-color: rgba(0,0,0,0.4);
+      z-index: -1;
+      pointer-events: none;
+    }
+
+    header {
+      background-color: rgba(0, 64, 128, 0.8);
+      color: white;
+      padding: 15px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+
+    .logo a img {
+      height: 40px;
+    }
+
+       /* Navigation */
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 20px;
+    }
+
+    nav ul li a {
+      color: white;
+      text-decoration: none;
+      font-weight: 600;
+      padding: 8px 12px;
+      border-radius: 4px;
+      transition: background-color 0.3s;
+    }
+
+    nav ul li a:hover {
+      background-color: #003060;
+    }
+
+    /* Hamburger */
+    .hamburger {
+      display: none;
+      background: none;
+      border: none;
+      cursor: pointer;
+      flex-direction: column;
+      justify-content: space-between;
+      width: 30px;
+      height: 22px;
+      z-index: 1000;
+    }
+
+    .hamburger div {
+      height: 3px;
+      width: 100%;
+      background: white;
+      border-radius: 3px;
+      transition: all 0.3s ease;
+    }
+
+    /* Mobile Styles */
+    @media (max-width: 768px) {
+      .hamburger {
+        display: flex;
+      }
+      nav ul {
+        position: fixed;
+        top: 70px;
+        left: 0;
+        width: 100%;
+        background: rgba(0, 0, 0, 0.9);
+        flex-direction: column;
+        padding: 20px 0;
+        display: none;
+      }
+      nav ul.show {
+        display: flex;
+      }
+      nav ul li a {
+        padding: 15px 20px;
+        border-bottom: 1px solid rgba(255,255,255,0.1);
+      }
+    }
+
+
+       main {
+      max-width: 1200px;
+      margin: 30px auto 60px;
+      padding: 0 20px;
+      position: relative;
+      z-index: 5;
+    }
+
+    .hero {
+      background-color: rgba(0, 115, 230, 0.6);
+      padding: 60px 20px;
+      text-align: center;
+      border-radius: 8px;
+      margin-bottom: 40px;
+    }
+
+    .hero h1 {
+      font-size: 3rem;
+      margin-bottom: 15px;
+    }
+
+    .hero p {
+      font-size: 1.2rem;
+      max-width: 700px;
+      margin: 0 auto;
+    }
+
+    section {
+      margin-bottom: 60px;
+    }
+
+    section h2 {
+      margin-bottom: 20px;
+      color: #aad4ff;
+      border-bottom: 3px solid #0073e6;
+      display: inline-block;
+      padding-bottom: 5px;
+    }
+
+    /* Product cards */
+    .products-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit,minmax(220px,1fr));
+      gap: 20px;
+    }
+
+    .product-card {
+      background-color: rgba(255, 255, 255, 0.1);
+      border-radius: 8px;
+      padding: 20px;
+      text-align: center;
+      transition: transform 0.3s ease;
+      box-shadow: 0 0 8px rgba(0,0,0,0.3);
+      backdrop-filter: blur(5px);
+      color: white;
+    }
+
+    .product-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 0 15px rgba(0,115,230,0.8);
+    }
+
+    .product-card img {
+      max-width: 100%;
+      height: 140px;
+      object-fit: contain;
+      margin-bottom: 15px;
+    }
+
+    .product-card h3 {
+      margin-bottom: 10px;
+      color: #aad4ff;
+    }
+section#about {
+  max-width: 900px;
+  margin: 0 auto 60px;
+  background-color: rgba(0, 115, 230, 0.6);
+  color: white;
+  padding: 30px 20px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 115, 230, 0.5);
+  line-height: 1.6;
+}
+
+section#about h2 {
+  color: #aad4ff;
+  margin-bottom: 20px;
+  border-bottom: 3px solid #0073e6;
+  display: inline-block;
+  padding-bottom: 5px;
+}
+
+    /* View More Button */
+    .btn-view-more {
+      display: inline-block;
+      background-color: #0073e6;
+      color: white;
+      padding: 12px 28px;
+      font-weight: 700;
+      border-radius: 6px;
+      text-decoration: none;
+      font-size: 1.1rem;
+      transition: background-color 0.3s ease;
+      cursor: pointer;
+      margin-top: 25px;
+    }
+
+    .btn-view-more:hover,
+    .btn-view-more:focus {
+      background-color: #005bb5;
+      outline: none;
+    }
+
+    /* Services list */
+    .services-list {
+      list-style: none;
+      max-width: 700px;
+      margin: 0 auto;
+      padding-left: 0;
+      color: white;
+    }
+
+    .services-list li {
+      background-color: rgba(255, 255, 255, 0.1);
+      margin-bottom: 15px;
+      padding: 15px 20px;
+      border-radius: 8px;
+      font-weight: 600;
+      position: relative;
+      padding-left: 40px;
+      box-shadow: 0 0 8px rgba(0,0,0,0.3);
+      backdrop-filter: blur(5px);
+    }
+
+    .services-list li::before {
+      content: "✔";
+      position: absolute;
+      left: 15px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: #aad4ff;
+      font-weight: bold;
+    }
+
+    /* Contact form */
+    form {
+      max-width: 500px;
+      margin: 0 auto;
+      background: rgba(255, 255, 255, 0.1);
+      padding: 25px;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.2);
+      backdrop-filter: blur(6px);
+      color: white;
+    }
+
+    form label {
+      display: block;
+      margin-bottom: 6px;
+      font-weight: 600;
+      color: #aad4ff;
+    }
+
+    form input[type="text"],
+    form input[type="email"],
+    form textarea {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 15px;
+      border: 2px solid #ddd;
+      border-radius: 5px;
+      font-size: 1rem;
+      resize: vertical;
+      transition: border-color 0.3s;
+      background-color: rgba(255,255,255,0.9);
+      color: #333;
+    }
+
+    form input[type="text"]:focus,
+    form input[type="email"]:focus,
+    form textarea:focus {
+      border-color: #0073e6;
+      outline: none;
+    }
+
+    form button {
+      background-color: #0073e6;
+      color: white;
+      border: none;
+      padding: 12px 20px;
+      font-size: 1rem;
+      border-radius: 5px;
+      cursor: pointer;
+      font-weight: 700;
+      transition: background-color 0.3s ease;
+      width: 100%;
+    }
+
+    form button:hover {
+      background-color: #005bb5;
+    }
+
+    footer {
+      background-color: rgba(0, 64, 128, 0.8);
+      color: #ccc;
+      text-align: center;
+      padding: 15px 20px;
+      font-size: 0.9rem;
+      position: relative;
+      z-index: 10;
+    }
+   /* Brands Section */
+#brands {
+  padding: 60px 20px;
+  background-color: rgba(255, 255, 255, 0.05);
+  text-align: center;
+}
+
+#brands h2 {
+  font-size: 28px;
+  margin-bottom: 30px;
+  color: #aad4ff;
+  border-bottom: 3px solid #0073e6;
+  display: inline-block;
+  padding-bottom: 5px;
+}
+
+.brand-logos {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+  gap: 20px;
+  max-width: 1000px;
+  margin: 0 auto;
+  align-items: center;
+  justify-items: center;
+}
+
+.brand-logos img {
+  max-width: 120px;
+  max-height: 60px;
+  object-fit: contain;
+  background: rgba(255, 255, 255, 0.1);
+  padding: 10px;
+  border-radius: 8px;
+  box-shadow: 0 0 8px rgba(0,0,0,0.3);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.brand-logos img:hover {
+  transform: scale(1.1);
+  box-shadow: 0 0 15px rgba(0,115,230,0.8);
+}
+
+  </style>
+</head>
+<body>
+  <video autoplay muted loop playsinline id="bg-video">
+    <source src="bgvideo.mp4.mp4" type="video/mp4" />
+    Your browser does not support the video tag.
+  </video>
+
+  <div id="overlay"></div>
+
+  <header>
+    <div class="logo">
+      <a href="index.html"></a>
+      
+        <!-- Replace with your logo path -->
+        <img src="images/logo2.png" alt="Galaxy Smart Solutions FZE">
+        <span class="company-name">Galaxy Smart Solutions FZE</span>
+         
+      </a>
+    </div>
+    <nav>
+             <button class="hamburger" id="hamburger">
+        <div></div>
+        <div></div>
+        <div></div>
+      </div>
+      </button>
+      <ul class="nav-links" id="nav-links">
+        
+        <li><a href="finalprdts.html">Products</a></li>
+        <li><a href="#services">Services</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+
+  </header>
+
+  <main>
+    <section class="hero" role="banner">
+      <h1>Galaxy Smart Solutions FZE</h1>
+      <p> Leading Electronics Spare Parts & IT Telecom TRADING Providing quality electronics components and telecommunications products with trusted brands  tailored to your business needs.</p>
+    </section>
+
+    <section id="products" tabindex="-1">
+      <h2>Our Products</h2>
+      <div class="products-grid" role="list">
+        <article class="product-card" role="listitem" tabindex="0">
+          <img src="images/fluke digital multimetre.png" alt="Product 1 image" />
+          <h3>fluke digital multimetre</h3>
+          <p> FLUKE Testing Equipments available for your industries requirement </p>
+        </article>
+        <article class="product-card" role="listitem" tabindex="0">
+          <img src="products/images/HDMI TO AV.png" alt="Product 2 image" />
+          <h3>  HDMI TO AV</h3>
+          <p>All kinds of Data And Networking Cables and accessories Available.</p>
+        </article>
+        <article class="product-card" role="listitem" tabindex="0">
+          <img src="relays/images/4pdt relay type.png" alt="Product 3 image" />
+          <h3>Relays</h3>
+          <p>All Kinds of Relays Available .</p>
+        </article>
+      </div>
+      <div style="text-align:center;">
+        <a href="finalprdts.html" class="btn-view-more">View More</a>
+      </div>
+    </section>
+
+    <div style="text-align: center; margin-top: 30px;">
+  <a href="https://wa.me/971558249190" target="_blank" 
+     style="background-color: #25D366; color: white; padding: 12px 25px; border-radius: 50px; text-decoration: none; font-size: 18px; font-weight: bold;">
+    💬 Chat on WhatsApp
+  </a>
+</div>
+
+<section id="brands" class="brands-section" style="padding: 60px 20px; background-color: rgba(255,255,255,0.1);">
+  <h2 style="text-align: center; color: #aad4ff;">Our Brands</h2>
+  <div class="brand-logos">
+    <img src="images/brands/linksys.png" alt="Linksys Logo">
+    <img src="images/brands/fluke.png" alt="Fluke Logo">
+    <img src="images/brands/unnamed.png" alt="RR Logo">
+    <img src="images/brands/kongda.png" alt="Kongda Logo">
+    <img src="images/brands/frater.png" alt="Frater Logo">
+    <img src="images/brands/schneider.png" alt="Schneider Logo">
+    <img src="images/brands/tplink.png" alt="TP-Link Logo">
+    <img src="images/brands/legrand.png" alt="Legrand Logo">
+    <img src="images/brands/stek.png" alt="Stek Logo">
+    <img src="images/brands/unitt.png" alt="Unitt Logo">
+    <img src="images/brands/cisco.png" alt="Cisco Logo">
+  </div>
+</section>
+
+
+    <section id="services" tabindex="-1">
+      <h2>Our Services</h2>
+      <ul class="services-list">
+        <li>We Provide All kind of Products with quality and reliability</li>
+        <li>All Kinds of Brands Available</li>
+        <li>Electrical , Electronics and IT Networking accessories Provider </li>
+        <li>ENQUIRE NOW</li>
+      </ul>
+    </section>
+
+  <section class="about-us container" id="about-us">
+    <h2>Galaxy Smart Solutions</h2>
+    <p>At Galaxy Smart Solutions, we believe that innovation should be within everyone's reach. We're not just a tech-driven company — we're a movement toward smarter living.</p>
+    <p>Founded on the principles of simplicity, intelligence, and modern design, we specialize in providing smart technologies that seamlessly integrate into everyday life. From smart home gadgets to cutting-edge wearables and productivity tools, our mission is to connect people with devices that enhance comfort, efficiency, and experience.</p>
+    <p>Driven by a passion for progress and customer satisfaction, we continue to explore the universe of possibilities — turning futuristic ideas into real-world solutions.</p>
+    <p class="highlight">“Innovation is no longer the future. With Galaxy Smart Solutions, it’s your today.”</p>
+  </section>
+
+  <section class="contact" id="contact">
+    <h3>Contact Us</h3>
+ <form action="https://formspree.io/f/xvgqdqyz" method="POST">
+
+
+      <label for="name">Full Name</label>
+      <input type="text" id="name" name="name" required placeholder="Your full name" />
+
+      <label for="email">Email Address</label>
+      <input type="email" id="email" name="email" required placeholder="you@example.com" />
+
+      <label for="phone">Phone Number</label>
+      <input type="tel" id="phone" name="phone" placeholder="+971 5012345678" />
+
+      <label for="message">Your Inquiry</label>
+      <textarea id="message" name="message" required placeholder="Write your message here"></textarea>
+
+      <input type="hidden" name="_captcha" value="false" />
+      <input type="hidden" name="_next" value="thankyou.html" />
+
+      <button type="submit">Send Inquiry</button>
+    </form>
+  </section>
+
+  <footer>
+    <p>© 2025 Galaxy Smart Solutions FZE | Email: <a href="mailto:sales@galaxysmartsolutionsfze.com">sales@galaxysmartsolutionsfze.com</a> | Phone: 055 824 9190</p>
+<footer>
+  <p>
+    © 2025 Galaxy Smart Solutions FZE<br />
+    SHARJAH UAE -LIC NO : SC241101901
+TEL : 0558249190
+TRN : 104655927200003 <br />
+    Email: <a href="mailto:sales@galaxysmartsolutionsfze.com">sales@galaxysmartsolutionsfze.com</a><br />
+    websitebyshaheen
+  </p>
+</footer>
+
+  </footer>
+
+  <a
+    href="https://wa.me/971558249190"
+    id="whatsapp-button"
+    target="_blank"
+    aria-label="Contact us on WhatsApp"
+    rel="noopener"
+  >
+    <i class="fab fa-whatsapp"></i>
+  </a>
+  <script>
+ document.addEventListener('DOMContentLoaded', function() {
+    const hamburger = document.querySelector('.hamburger');
+    const navUl = document.querySelector('nav ul');
+    const body = document.body;
+
+    // Toggle menu on click
+    hamburger.addEventListener('click', function() {
+      this.classList.toggle('active');
+      navUl.classList.toggle('show');
+      body.classList.toggle('menu-open');
+    });
+
+    // Close menu when clicking on links
+    document.querySelectorAll('nav ul li a').forEach(link => {
+      link.addEventListener('click', function() {
+        hamburger.classList.remove('active');
+        navUl.classList.remove('show');
+        body.classList.remove('menu-open');
+      });
+    });
+
+    // Close menu when clicking outside
+    document.addEventListener('click', function(e) {
+      if (!e.target.closest('nav') && !e.target.classList.contains('hamburger')) {
+        hamburger.classList.remove('active');
+        navUl.classList.remove('show');
+        body.classList.remove('menu-open');
+      }
+    });
+  });
+</script>
+</body>
+</html>
+

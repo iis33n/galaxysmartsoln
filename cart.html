@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Cart – Galaxy Smart Solutions</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <style>
+    body { font-family: Arial, sans-serif; padding: 20px; }
+    .cart-item { display: flex; justify-content: space-between; margin-bottom: 8px; }
+    .cart-item button { background: red; color: white; border: none; padding: 4px 8px; border-radius: 4px; cursor: pointer; }
+    .form-group { margin-bottom: 12px; }
+    label { display: block; margin-bottom: 4px; }
+    input, textarea { width: 100%; padding: 8px; }
+    button#send { background: green; color: white; border: none; padding: 10px 16px; border-radius: 6px; cursor: pointer; margin-top: 16px; }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="brand">
+      <img src="images/logo2.png" alt="Galaxy Smart Solutions" class="logo" />
+      <span>Galaxy Smart Solutions</span>
+    </div>
+    <nav class="top-nav">
+      <a href="index.html">Home</a>
+      <a href="finalprdts.html">Back</a>
+    </nav>
+  </header>
+  <h1>🛒 Your Quote Request Cart</h1>
+
+  <ul id="cart-items"></ul>
+
+  <h2>Your Information</h2>
+  <form id="quote-form">
+    <div class="form-group">
+      <label for="name">Name*</label>
+      <input type="text" id="name" required />
+    </div>
+    <div class="form-group">
+      <label for="email">Email*</label>
+      <input type="email" id="email" required />
+    </div>
+    <div class="form-group">
+      <label for="message">Message (Optional)</label>
+      <textarea id="message" rows="4"></textarea>
+    </div>
+    <button type="submit" id="send">Send Quote Request via WhatsApp</button>
+  </form>
+
+  <script>
+    let cart = JSON.parse(localStorage.getItem("cartItems") || "[]");
+
+    const cartList = document.getElementById("cart-items");
+
+    function renderCart() {
+      cartList.innerHTML = "";
+      if (cart.length === 0) {
+        cartList.innerHTML = "<li>Your cart is empty.</li>";
+        return;
+      }
+
+      cart.forEach((item, index) => {
+        const li = document.createElement("li");
+        li.className = "cart-item";
+        li.innerHTML = `
+          ${index + 1}. ${item}
+          <button onclick="removeItem(${index})">Remove</button>
+        `;
+        cartList.appendChild(li);
+      });
+    }
+
+    function removeItem(index) {
+      cart.splice(index, 1);
+      localStorage.setItem("cartItems", JSON.stringify(cart));
+      renderCart();
+    }
+
+    document.getElementById("quote-form").addEventListener("submit", function(e) {
+      e.preventDefault();
+
+      if (cart.length === 0) {
+        alert("Your cart is empty.");
+        return;
+      }
+
+      const name = document.getElementById("name").value.trim();
+      const email = document.getElementById("email").value.trim();
+      const message = document.getElementById("message").value.trim();
+
+      if (!name || !email) {
+        alert("Please fill in required fields.");
+        return;
+      }
+
+      const itemList = cart.map((item, i) => `${i + 1}. ${item}`).join("\n");
+      const fullMessage =
+        `Hello, I would like to request a quote for the following items:\n\n${itemList}\n\nName: ${name}\nEmail: ${email}` +
+        (message ? `\nMessage: ${message}` : "");
+
+      window.open(`https://wa.me/971558249190?text=${encodeURIComponent(fullMessage)}`, "_blank");
+    });
+
+    renderCart();
+  </script>
+</body>
+</html>

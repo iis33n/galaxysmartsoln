@@ -1,0 +1,515 @@
+<html lang="en">
+<head>
+  <header>
+  <img src="C:\Users\shamr\Downloads\website pics\galaxy smart sol logo.png" alt="Galaxy Smart Solutions Logo" style="height: 60px;">
+  <h1>GALAXY SMART SOLUTIONS FZE</h1>
+</header>
+
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title> Electronics & IT Telecom Trad</title>
+  <style>
+    header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  background: #222;
+  color: white;
+  padding: 20px;
+}
+header img {
+  height: 60px;
+}
+
+    /* Reset */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    body {
+      line-height: 1.6;
+      color: #333;
+      background: #fff;
+    }
+
+    a {
+      color: #0077cc;
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    /* Container */
+    .container {
+      width: 90%;
+      max-width: 1100px;
+      margin: auto;
+      padding: 20px 0;
+    }
+
+    /* Header */
+    header {
+      background: #005bbb;
+      color: white;
+      padding: 20px 0;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    header .container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    header h1 {
+      font-size: 1.8rem;
+      letter-spacing: 2px;
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 25px;
+    }
+
+    nav ul li {
+      font-weight: 600;
+    }
+
+    nav ul li a {
+      color: white;
+      font-weight: 600;
+      padding: 5px 10px;
+      transition: background 0.3s ease;
+      border-radius: 4px;
+    }
+
+    nav ul li a:hover {
+      background: #003f8a;
+    }
+
+    /* Hero Section */
+    .hero {
+      background: linear-gradient(135deg, #005bbb, #0077cc);
+      color: white;
+      padding: 60px 20px;
+      text-align: center;
+    }
+
+    .hero h2 {
+      font-size: 2.8rem;
+      margin-bottom: 15px;
+      letter-spacing: 1.5px;
+    }
+
+    .hero p {
+      font-size: 1.2rem;
+      max-width: 700px;
+      margin: 0 auto;
+      line-height: 1.5;
+    }
+.brand-logos img {
+  width: 140px;
+  height: 90px;
+  object-fit: contain;
+  padding: 10px;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+  filter: grayscale(100%);
+  transition: all 0.3s ease;
+}
+
+.brand-logos img:hover {
+  transform: scale(1.05);
+  filter: grayscale(0%);
+}
+.brand-logos {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 30px;
+  max-width: 1200px;
+  margin: 40px auto;
+  justify-items: center;
+  align-items: center;
+  padding: 20px;
+}
+.action-buttons {
+  text-align: center;
+  margin-top: 35px;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.enquire-button,
+.contact-button {
+  background-color: #005bbb;
+  color: white;
+  font-weight: bold;
+  padding: 12px 30px;
+  font-size: 1.1rem;
+  border: none;
+  border-radius: 6px;
+  text-decoration: none;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  transition: background 0.3s ease, transform 0.2s ease;
+}
+
+.enquire-button:hover,
+.contact-button:hover {
+  background-color: #003f8a;
+  transform: translateY(-2px);
+}
+
+
+    /* Services / Products Grid */
+    .services {
+      padding: 50px 0;
+    }
+
+    .services h3 {
+      text-align: center;
+      font-size: 2rem;
+      margin-bottom: 40px;
+      color: #005bbb;
+    }
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit,minmax(250px,1fr));
+      gap: 25px;
+    }
+
+    .card {
+      background: #f9f9f9;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      padding: 20px;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      cursor: default;
+    }
+
+    .card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 8px 16px rgba(0,0,0,0.15);
+    }
+
+    .card img {
+      width: 60px;
+      height: 60px;
+      object-fit: contain;
+      margin-bottom: 15px;
+    }
+
+    .card h4 {
+      margin-bottom: 10px;
+      color: #003f8a;
+    }
+
+    .card p {
+      font-size: 0.95rem;
+      color: #555;
+    }
+
+    /* About Us Section */
+    .about-us {
+      background: #f0f4ff;
+      padding: 60px 20px;
+      color: #003f8a;
+      max-width: 900px;
+      margin: 0 auto 60px auto;
+      border-radius: 10px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+    }
+
+    .about-us h3 {
+      font-size: 2rem;
+      margin-bottom: 20px;
+      text-align: center;
+    }
+
+    .about-us p {
+      font-size: 1.1rem;
+      line-height: 1.6;
+      margin-bottom: 15px;
+      white-space: pre-line;
+    }
+
+    .about-us .highlight {
+      font-weight: 700;
+      color: #005bbb;
+      text-align: center;
+      margin-top: 20px;
+      font-size: 1.2rem;
+      font-style: italic;
+    }
+
+    /* Contact Section */
+    .contact {
+      background: #005bbb;
+      color: white;
+      padding: 50px 20px;
+    }
+
+    .contact h3 {
+      text-align: center;
+      margin-bottom: 30px;
+      font-size: 2rem;
+    }
+
+    form {
+      max-width: 600px;
+      margin: 0 auto;
+      background: white;
+      padding: 30px;
+      border-radius: 8px;
+      box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+      color: #333;
+    }
+
+    form label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: 600;
+    }
+
+    form input,
+    form textarea {
+      width: 100%;
+      padding: 10px 12px;
+      margin-bottom: 20px;
+      border: 1.5px solid #ccc;
+      border-radius: 5px;
+      font-size: 1rem;
+      font-family: inherit;
+      transition: border-color 0.3s ease;
+    }
+
+    form input:focus,
+    form textarea:focus {
+      border-color: #005bbb;
+      outline: none;
+    }
+
+    form textarea {
+      resize: vertical;
+      min-height: 100px;
+    }
+
+    form button {
+      background: #005bbb;
+      color: white;
+      font-weight: 700;
+      border: none;
+      padding: 15px 25px;
+      font-size: 1.1rem;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+
+    form button:hover {
+      background: #003f8a;
+    }
+
+    /* Footer */
+    footer {
+      background: #222;
+      color: #ddd;
+      padding: 25px 20px;
+      text-align: center;
+      font-size: 0.9rem;
+    }
+
+    footer a {
+      color: #66aaff;
+    }
+
+.contact p {
+  font-size: 1.1rem;
+  color: #f9f9f9;
+
+}
+
+
+    /* WhatsApp Button */
+    #whatsapp-button {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      background: #25d366;
+      color: white;
+      border-radius: 50%;
+      width: 60px;
+      height: 60px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+      cursor: pointer;
+      transition: background 0.3s ease;
+      z-index: 1000;
+      text-decoration: none;
+      font-size: 30px;
+    }
+
+    #whatsapp-button:hover {
+      background: #1ebe57;
+    }
+
+    /* Responsive */
+    @media(max-width: 600px){
+      header .container {
+        flex-direction: column;
+        gap: 10px;
+      }
+
+      nav ul {
+        flex-direction: column;
+        gap: 10px;
+      }
+
+      .hero h2 {
+        font-size: 2rem;
+      }
+    }
+  </style>
+  <!-- WhatsApp Icon SVG -->
+  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+</head>
+<body>
+  <header>
+    <div class="container">
+      
+      <nav>
+        <ul>
+          <li><a href="#home">Home</a></li>
+          <li><a href="#services">our services</a></li>
+          <li><a href="#brands">Products</a></li>
+          <li><a href="#about-us">About Us</a></li>
+          <li><a href="#contact">Contact</a></li>
+          <li><a href="mailto:sales@galaxysmartsolutionsfze.com">Email</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <section class="hero" id="home">
+    <h2>Leading Electronics Spare Parts & IT Telecom TRADING</h2>
+    <p>Providing quality electronics components and telecommunications products with trusted brands  tailored to your business needs.</p>
+  </section>
+
+<section id="brands" class="brands-section"style="padding: 60px 20px; background-color: #f9f9f9;">
+  <h2 style="text-align: center; color: #005bbb;">Brands</h2>
+  <div class="brand-logos">
+   <img src="C:\Users\shamr\Downloads\website pics\linksys.png" alt="Linksys Logo" > 
+<img src="C:\Users\shamr\Downloads\website pics\fluke.png" alt="Fluke Logo" >
+<img src="C:\Users\shamr\Downloads\website pics\unnamed.png" alt="RR Logo" >
+<img src="C:\Users\shamr\Downloads\website pics\kongda.png" alt="Kongda Logo">
+<img src="C:\Users\shamr\Downloads\website pics\frater.png" alt="Frater Logo">
+<img src="C:\Users\shamr\Downloads\website pics\schneider.png" alt="schneider Logo">
+<img src="C:\Users\shamr\Downloads\website pics\tplink.png" alt="tplink Logo">
+<img src="C:\Users\shamr\Downloads\website pics\legrand.png" alt="legrand Logo">
+<img src="C:\Users\shamr\Downloads\website pics\stek.png" alt="Stek Logo">
+<img src="C:\Users\shamr\Downloads\website pics\unitt.png" alt="unitt Logo">
+<img src="C:\Users\shamr\Downloads\website pics\cisco.png"alt="cisco Logo">
+
+  </div>
+</section>
+
+<div class="action-buttons">
+  <a href="#contact" class="enquire-button">Enquire Now</a>
+  <a href="tel:+971558249190" class="contact-button">Call: 055 824 9190</a>
+</div>
+
+
+
+  <section class="services container" id="services" >
+    <h3>WHAT WE SELL?</h3>
+    <div class="cards">
+      <div class="card">
+        <img src="C:\Users\shamr\Downloads\website pics\galaxy smart sol logo.png" alt="Ship Testers" />
+        <h4>Electrical Components</h4>
+        <p>High-quality electrical, industrial, medical, process and calibration applications.</p>
+      </div>
+      <div class="card">
+        <img src="C:\Users\shamr\Downloads\website pics\galaxy smart sol logo.png" />
+        <h4>Telecommunications Equipment</h4>
+        <p>Advanced IT telecom hardware including routers, switches, and transmission devices.</p>
+      </div>
+      <div class="card">
+        <img src="C:\Users\shamr\Downloads\website pics\galaxy smart sol logo.png" />
+        <h4>Electronic items</h4>
+        <p> Set UP  electronics and IT infrastructure  support devices available for your specific business challenges.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="about-us container" id="about-us">
+    <h3>About Us — Galaxy Smart Solutions</h3>
+    <p>At Galaxy Smart Solutions, we believe that innovation should be within everyone's reach. We're not just a tech-driven company — we're a movement toward smarter living.</p>
+    <p>Founded on the principles of simplicity, intelligence, and modern design, we specialize in providing smart technologies that seamlessly integrate into everyday life. From smart home gadgets to cutting-edge wearables and productivity tools, our mission is to connect people with devices that enhance comfort, efficiency, and experience.</p>
+    <p>Driven by a passion for progress and customer satisfaction, we continue to explore the universe of possibilities — turning futuristic ideas into real-world solutions.</p>
+    <p class="highlight">“Innovation is no longer the future. With Galaxy Smart Solutions, it’s your today.”</p>
+  </section>
+
+  <section class="contact" id="contact">
+    <h3>Contact Us</h3>
+    <form action="<form action="https://formspree.io/f/xeoknbnv" method="POST">
+
+      <label for="name">Full Name</label>
+      <input type="text" id="name" name="name" required placeholder="Your full name" />
+
+      <label for="email">Email Address</label>
+      <input type="email" id="email" name="email" required placeholder="you@example.com" />
+
+      <label for="phone">Phone Number</label>
+      <input type="tel" id="phone" name="phone" placeholder="+971 55 824 9190" />
+
+      <label for="message">Your Inquiry</label>
+      <textarea id="message" name="message" required placeholder="Write your message here"></textarea>
+
+      <input type="hidden" name="_captcha" value="false" />
+      <input type="hidden" name="_next" value="thankyou.html" />
+
+      <button type="submit">Send Inquiry</button>
+    </form>
+  </section>
+
+  <footer>
+    <p>© 2025 Galaxy Smart Solutions FZE | Email: <a href="mailto:sales@galaxysmartsolutionsfze.com">sales@galaxysmartsolutionsfze.com</a> | Phone: 055 824 9190</p>
+<footer>
+  <p>
+    © 2025 Galaxy Smart Solutions FZE<br />
+    SHARJAH UAE -LIC NO : SC241101901
+TEL : 0558249190
+TRN : 104655927200003 <br />
+    Email: <a href="mailto:sales@galaxysmartsolutionsfze.com">sales@galaxysmartsolutionsfze.com</a><br />
+    Phone: 055 824 9190
+  </p>
+</footer>
+
+  </footer>
+
+  <a
+    href="https://wa.me/971558249190"
+    id="whatsapp-button"
+    target="_blank"
+    aria-label="Contact us on WhatsApp"
+    rel="noopener"
+  >
+    <i class="fab fa-whatsapp"></i>
+  </a>
+</body>
+</html>

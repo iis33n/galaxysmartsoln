@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Enquiry List – Galaxy Smart Solutions</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 40px;
+      background: #f4f4f4;
+    }
+    h1 {
+      color: #005bbb;
+    }
+    ul {
+      background: white;
+      padding: 20px;
+      border-radius: 8px;
+      list-style: none;
+    }
+    li {
+      padding: 12px;
+      border-bottom: 1px solid #ccc;
+    }
+    .clear-btn {
+      background: #ff4444;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      margin-top: 20px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+
+<h1>Your Enquiry List</h1>
+<ul id="enquiry-list"></ul>
+
+<button class="clear-btn" onclick="clearEnquiries()">Clear All</button>
+
+<script>
+  const enquiryList = document.getElementById('enquiry-list');
+  const products = JSON.parse(localStorage.getItem('enquiries')) || [];
+
+  if (products.length === 0) {
+    enquiryList.innerHTML = "<li>No products selected yet.</li>";
+  } else {
+    products.forEach(name => {
+      const li = document.createElement('li');
+      li.textContent = name;
+      enquiryList.appendChild(li);
+    });
+  }
+
+  function clearEnquiries() {
+    localStorage.removeItem('enquiries');
+    window.location.reload();
+  }
+</script>
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
